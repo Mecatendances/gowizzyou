@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Lead {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  company   String?
+  source    String   @default("website") // website, webinar, contact
+  pack      String?  // automatisation, app-metier, transformation
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  contactMessages    ContactMessage[]
+  webinarRegistrations WebinarRegistration[]
+
+  @@map("leads")
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  leadId    String?  @map("lead_id")
+  name      String
+  email     String
+  company   String?
+  pack      String?
+  message   String
+  status    String   @default("new") // new, read, replied, archived
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  lead Lead? @relation(fields: [leadId], references: [id])
+
+  @@map("contact_messages")
+}
+
+model WebinarRegistration {
+  id        String   @id @default(cuid())
+  leadId    String?  @map("lead_id")
+  name      String
+  email     String
+  webinarId String   @default("claude-code-2026") @map("webinar_id")
+  status    String   @default("registered") // registered, attended, no-show
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  lead Lead? @relation(fields: [leadId], references: [id])
+
+  @@unique([email, webinarId])
+  @@map("webinar_registrations")
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  status    String   @default("active") // active, unsubscribed
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("newsletter_subscribers")
+}

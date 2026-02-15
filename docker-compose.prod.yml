@@ -1,0 +1,102 @@
+# ============================================
+# GoWizzYou — Docker Compose (PRODUCTION)
+# Multi-stage builds, securite durcie, logs
+# ============================================
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: gowizzyou-prod-db
+    environment:
+      POSTGRES_DB: gowizzyou_prod
+      POSTGRES_USER: gowizzyou
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - prod_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gowizzyou"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+    # Security: not exposed to host
+    networks:
+      - internal
+
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+      target: runner
+    container_name: gowizzyou-prod-api
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://gowizzyou:${DB_PASSWORD}@postgres:5432/gowizzyou_prod?schema=public
+      - API_PORT=3001
+      - API_CORS_ORIGIN=${API_CORS_ORIGIN:-https://gowizzyou.com}
+      - THROTTLE_TTL=60
+      - THROTTLE_LIMIT=10
+      - JWT_SECRET=${JWT_SECRET}
+      - KIT_API_KEY=${KIT_API_KEY}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+    ports:
+      - "3001:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: always
+    # Security: read-only filesystem
+    read_only: true
+    tmpfs:
+      - /tmp
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+    networks:
+      - internal
+      - web
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+      target: runner
+    container_name: gowizzyou-prod-web
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=${API_URL:-https://api.gowizzyou.com}
+      - NEXT_PUBLIC_SITE_URL=${SITE_URL:-https://gowizzyou.com}
+      - NEXT_PUBLIC_GA_ID=${GA_ID}
+      - NEXT_PUBLIC_GTM_ID=${GTM_ID}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    restart: always
+    read_only: true
+    tmpfs:
+      - /tmp
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.25'
+    networks:
+      - internal
+      - web
+
+volumes:
+  prod_postgres_data:
+
+networks:
+  internal:
+    driver: bridge
+    internal: true
+  web:
+    driver: bridge

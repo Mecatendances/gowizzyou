@@ -1,0 +1,61 @@
+# ============================================
+# GoWizzYou — Docker Compose (STAGING / RECETTE)
+# Builds optimises, variables staging
+# ============================================
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: gowizzyou-staging-db
+    environment:
+      POSTGRES_DB: gowizzyou_staging
+      POSTGRES_USER: gowizzyou
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-staging_password}
+    volumes:
+      - staging_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gowizzyou"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+      target: runner
+    container_name: gowizzyou-staging-api
+    environment:
+      - NODE_ENV=staging
+      - DATABASE_URL=postgresql://gowizzyou:${DB_PASSWORD:-staging_password}@postgres:5432/gowizzyou_staging?schema=public
+      - API_PORT=3001
+      - API_CORS_ORIGIN=${API_CORS_ORIGIN:-https://staging.gowizzyou.com}
+      - THROTTLE_TTL=60
+      - THROTTLE_LIMIT=20
+      - JWT_SECRET=${JWT_SECRET}
+    ports:
+      - "3001:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: always
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+      target: runner
+    container_name: gowizzyou-staging-web
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=${API_URL:-https://staging-api.gowizzyou.com}
+      - NEXT_PUBLIC_SITE_URL=${SITE_URL:-https://staging.gowizzyou.com}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    restart: always
+
+volumes:
+  staging_postgres_data:

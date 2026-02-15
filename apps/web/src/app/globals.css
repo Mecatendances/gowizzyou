@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #F5F0EB;
+  --color-cream-dark: #EDE6DE;
+  --color-sky-light: #E8F4FD;
+  --color-sky: #D6E8F7;
+  --color-sky-dark: #B8D4ED;
+  --color-card: #FFFFFF;
+  --color-card-hover: #FAFAFA;
+  --color-border: #E8E4DF;
+  --color-border-light: #F0ECE7;
+  --color-text-primary: #111827;
+  --color-text-secondary: #4B5563;
+  --color-text-muted: #9CA3AF;
+  --color-text-label: #6B7280;
+  --color-accent: #4B7BF5;
+  --color-accent-light: #EBF1FB;
+  --color-success: #10B981;
+  --color-success-light: #D1FAE5;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-footer-bg: #D6E4F0;
+
+  --font-sans: 'Quicksand', ui-sans-serif, system-ui, sans-serif;
+
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
+  --animate-slide-up: slide-up 0.6s ease-out forwards;
+  --animate-slide-in-left: slide-in-left 0.6s ease-out forwards;
+  --animate-slide-in-right: slide-in-right 0.6s ease-out forwards;
+  --animate-scroll-up: scroll-up 40s linear infinite;
+  --animate-scroll-left: scroll-left 25s linear infinite;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slide-in-left {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes slide-in-right {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes scroll-up {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+  }
+
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background-color: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+/* Sky / Cloud background — real sky blue with soft cloud shapes */
+.sky-bg {
+  background: linear-gradient(
+    180deg,
+    #a8d4f5 0%,
+    #bde0f7 15%,
+    #d4ecfb 35%,
+    #e8f4fd 60%,
+    #F5F0EB 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.sky-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    /* Large fluffy clouds */
+    radial-gradient(ellipse 700px 180px at 15% 18%, rgba(255,255,255,0.9), transparent 70%),
+    radial-gradient(ellipse 500px 140px at 25% 22%, rgba(255,255,255,0.85), transparent 70%),
+    radial-gradient(ellipse 600px 160px at 65% 12%, rgba(255,255,255,0.88), transparent 70%),
+    radial-gradient(ellipse 450px 130px at 75% 16%, rgba(255,255,255,0.8), transparent 70%),
+    /* Mid-level clouds */
+    radial-gradient(ellipse 550px 120px at 40% 35%, rgba(255,255,255,0.6), transparent 70%),
+    radial-gradient(ellipse 400px 100px at 85% 40%, rgba(255,255,255,0.55), transparent 70%),
+    radial-gradient(ellipse 480px 110px at 10% 50%, rgba(255,255,255,0.5), transparent 70%),
+    /* Wisps lower */
+    radial-gradient(ellipse 350px 80px at 55% 60%, rgba(255,255,255,0.35), transparent 70%),
+    radial-gradient(ellipse 300px 70px at 30% 70%, rgba(255,255,255,0.25), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Lighter variant for transitions between sections */
+.sky-bg-light {
+  background: linear-gradient(
+    180deg,
+    #F5F0EB 0%,
+    #e2eef8 30%,
+    #d4ecfb 50%,
+    #e2eef8 70%,
+    #F5F0EB 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.sky-bg-light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 600px 150px at 20% 40%, rgba(255,255,255,0.7), transparent 70%),
+    radial-gradient(ellipse 500px 130px at 70% 30%, rgba(255,255,255,0.65), transparent 70%),
+    radial-gradient(ellipse 400px 100px at 50% 60%, rgba(255,255,255,0.5), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
