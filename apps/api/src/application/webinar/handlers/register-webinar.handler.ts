@@ -1,8 +1,9 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 import { Email } from '@domain/lead/value-objects/email.vo';
 import { WebinarRegistration } from '@domain/webinar/entities/webinar-registration.entity';
 import type { IWebinarRepository } from '@domain/webinar/repositories/webinar.repository.interface';
 import type { ILeadRepository } from '@domain/lead/repositories/lead.repository.interface';
+import type { IEmailService } from '@domain/email/email-service.interface';
 import { Lead } from '@domain/lead/entities/lead.entity';
 import { DuplicateRegistrationException } from '@shared/exceptions/domain.exception';
 import { INJECTION_TOKENS } from '@shared/constants';
@@ -10,11 +11,15 @@ import type { RegisterWebinarCommand } from '../commands/register-webinar.comman
 
 @Injectable()
 export class RegisterWebinarHandler {
+  private readonly logger = new Logger(RegisterWebinarHandler.name);
+
   constructor(
     @Inject(INJECTION_TOKENS.WEBINAR_REPOSITORY)
     private readonly webinarRepository: IWebinarRepository,
     @Inject(INJECTION_TOKENS.LEAD_REPOSITORY)
     private readonly leadRepository: ILeadRepository,
+    @Inject(INJECTION_TOKENS.EMAIL_SERVICE)
+    private readonly emailService: IEmailService,
   ) {}
 
   async execute(command: RegisterWebinarCommand): Promise<WebinarRegistration> {
@@ -49,6 +54,21 @@ export class RegisterWebinarHandler {
       leadId: lead.id,
     });
 
-    return this.webinarRepository.save(registration);
+    const saved = await this.webinarRepository.save(registration);
+
+    // Subscribe to Kit webinar form (fire and forget)
+    const kitFormId = process.env.KIT_WEBINAR_FORM_ID;
+    if (kitFormId) {
+      this.emailService
+        .subscribeToForm({
+          email: email.toString(),
+          name: command.name,
+          formId: kitFormId,
+          tags: ['webinar'],
+        })
+        .catch((err) => this.logger.error('Kit subscription failed', err));
+    }
+
+    return saved;
   }
 }

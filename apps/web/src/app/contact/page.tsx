@@ -9,6 +9,8 @@ import { SectionLabel } from '@/components/ui/SectionLabel';
 import { AnimateOnScroll } from '@/components/ui/AnimateOnScroll';
 import { Mail, Calendar, MessageSquare, CheckCircle2 } from 'lucide-react';
 
+const CALCOM_URL = process.env.NEXT_PUBLIC_CALCOM_URL;
+
 interface FormData {
   name: string;
   email: string;
@@ -94,7 +96,9 @@ export default function ContactPage() {
                         30 min de visio pour discuter de votre projet.
                       </p>
                       <a
-                        href="#"
+                        href={CALCOM_URL || '#calendrier'}
+                        target={CALCOM_URL ? '_blank' : undefined}
+                        rel={CALCOM_URL ? 'noopener noreferrer' : undefined}
                         className="text-sm font-medium text-accent hover:underline"
                       >
                         Choisir un creneau &rarr;
@@ -121,7 +125,7 @@ export default function ContactPage() {
                   </Card>
 
                   <Card padding="md" className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cream shrink-0">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cream-dark shrink-0">
                       <MessageSquare size={20} className="text-text-muted" />
                     </div>
                     <div>
@@ -138,7 +142,7 @@ export default function ContactPage() {
             {/* Form */}
             <div className="lg:col-span-2">
               <AnimateOnScroll direction="right">
-                <Card className="bg-white shadow-lg">
+                <Card className="bg-card shadow-lg">
                   {submitted ? (
                     <div className="text-center py-12">
                       <CheckCircle2 size={48} className="text-success mx-auto mb-4" />
@@ -195,7 +199,7 @@ export default function ContactPage() {
                             id="pack"
                             value={form.pack}
                             onChange={(e) => updateField('pack', e.target.value)}
-                            className="rounded-xl border border-border bg-white px-4 py-3 text-base text-text-primary transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+                            className="rounded-xl border border-border bg-card px-4 py-3 text-base text-text-primary transition-colors focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 [&>option]:bg-card"
                           >
                             <option value="">Selectionnez...</option>
                             <option value="automatisation">Pack 1 — Automatisation</option>
@@ -230,6 +234,32 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* Cal.com embed */}
+      {CALCOM_URL && (
+        <section id="calendrier" className="py-16 bg-cream-dark/30">
+          <div className="mx-auto max-w-4xl px-6">
+            <AnimateOnScroll>
+              <div className="text-center mb-8">
+                <SectionLabel>Rendez-vous</SectionLabel>
+                <h2 className="mt-4 text-3xl sm:text-4xl font-bold text-text-primary">
+                  Choisissez un creneau
+                </h2>
+                <p className="mt-3 text-text-secondary">
+                  30 minutes pour discuter de votre projet. Gratuit, sans engagement.
+                </p>
+              </div>
+            </AnimateOnScroll>
+            <div className="rounded-2xl overflow-hidden border border-border-light">
+              <iframe
+                src={CALCOM_URL}
+                className="w-full min-h-[600px] border-0"
+                title="Prendre rendez-vous avec GoWizzYou"
+              />
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }

@@ -11,7 +11,7 @@ export function Footer() {
           {/* Brand — left side */}
           <div className="lg:max-w-sm">
             <a href="/" className="flex items-center gap-2.5 mb-4">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-text-primary">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent">
                 <span className="text-sm font-bold text-white">G</span>
               </div>
               <span className="text-lg font-semibold text-text-primary">{SITE.name}</span>

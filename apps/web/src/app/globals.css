@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #F5F0EB;
-  --color-cream-dark: #EDE6DE;
-  --color-sky-light: #E8F4FD;
-  --color-sky: #D6E8F7;
-  --color-sky-dark: #B8D4ED;
-  --color-card: #FFFFFF;
-  --color-card-hover: #FAFAFA;
-  --color-border: #E8E4DF;
-  --color-border-light: #F0ECE7;
-  --color-text-primary: #111827;
-  --color-text-secondary: #4B5563;
-  --color-text-muted: #9CA3AF;
-  --color-text-label: #6B7280;
-  --color-accent: #4B7BF5;
-  --color-accent-light: #EBF1FB;
+  --color-cream: #0A0A0F;
+  --color-cream-dark: #161622;
+  --color-sky-light: #0D0D1A;
+  --color-sky: #12122B;
+  --color-sky-dark: #1E1E40;
+  --color-card: #141420;
+  --color-card-hover: #1C1C2C;
+  --color-border: #2A2A3C;
+  --color-border-light: #1E1E30;
+  --color-text-primary: #F1F1F3;
+  --color-text-secondary: #A0A0B8;
+  --color-text-muted: #6B6B82;
+  --color-text-label: #8080A0;
+  --color-accent: #7C5CFC;
+  --color-accent-light: #1E1535;
   --color-success: #10B981;
-  --color-success-light: #D1FAE5;
+  --color-success-light: #0D2E24;
   --color-warning: #F59E0B;
   --color-error: #EF4444;
-  --color-footer-bg: #D6E4F0;
+  --color-footer-bg: #07070C;
 
   --font-sans: 'Quicksand', ui-sans-serif, system-ui, sans-serif;
 
@@ -79,15 +79,14 @@ body {
   color: white;
 }
 
-/* Sky / Cloud background — real sky blue with soft cloud shapes */
+/* Dark gradient background with purple/blue orbs */
 .sky-bg {
   background: linear-gradient(
     180deg,
-    #a8d4f5 0%,
-    #bde0f7 15%,
-    #d4ecfb 35%,
-    #e8f4fd 60%,
-    #F5F0EB 100%
+    #0A0A1A 0%,
+    #0D0D22 25%,
+    #0A0A18 55%,
+    #0A0A0F 100%
   );
   position: relative;
   overflow: hidden;
@@ -98,18 +97,16 @@ body {
   position: absolute;
   inset: 0;
   background:
-    /* Large fluffy clouds */
-    radial-gradient(ellipse 700px 180px at 15% 18%, rgba(255,255,255,0.9), transparent 70%),
-    radial-gradient(ellipse 500px 140px at 25% 22%, rgba(255,255,255,0.85), transparent 70%),
-    radial-gradient(ellipse 600px 160px at 65% 12%, rgba(255,255,255,0.88), transparent 70%),
-    radial-gradient(ellipse 450px 130px at 75% 16%, rgba(255,255,255,0.8), transparent 70%),
-    /* Mid-level clouds */
-    radial-gradient(ellipse 550px 120px at 40% 35%, rgba(255,255,255,0.6), transparent 70%),
-    radial-gradient(ellipse 400px 100px at 85% 40%, rgba(255,255,255,0.55), transparent 70%),
-    radial-gradient(ellipse 480px 110px at 10% 50%, rgba(255,255,255,0.5), transparent 70%),
-    /* Wisps lower */
-    radial-gradient(ellipse 350px 80px at 55% 60%, rgba(255,255,255,0.35), transparent 70%),
-    radial-gradient(ellipse 300px 70px at 30% 70%, rgba(255,255,255,0.25), transparent 70%);
+    /* Purple orb top-left */
+    radial-gradient(ellipse 600px 400px at 10% 20%, rgba(124,92,252,0.12), transparent 70%),
+    /* Blue orb top-right */
+    radial-gradient(ellipse 500px 350px at 85% 15%, rgba(75,123,245,0.10), transparent 70%),
+    /* Cyan orb center */
+    radial-gradient(ellipse 450px 300px at 50% 55%, rgba(6,182,212,0.06), transparent 70%),
+    /* Purple wisp mid-left */
+    radial-gradient(ellipse 350px 200px at 20% 60%, rgba(124,92,252,0.05), transparent 70%),
+    /* Blue wisp lower-right */
+    radial-gradient(ellipse 300px 180px at 75% 70%, rgba(75,123,245,0.04), transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -118,11 +115,11 @@ body {
 .sky-bg-light {
   background: linear-gradient(
     180deg,
-    #F5F0EB 0%,
-    #e2eef8 30%,
-    #d4ecfb 50%,
-    #e2eef8 70%,
-    #F5F0EB 100%
+    #0A0A0F 0%,
+    #0D0D1A 30%,
+    #10102A 50%,
+    #0D0D1A 70%,
+    #0A0A0F 100%
   );
   position: relative;
   overflow: hidden;
@@ -133,9 +130,9 @@ body {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 600px 150px at 20% 40%, rgba(255,255,255,0.7), transparent 70%),
-    radial-gradient(ellipse 500px 130px at 70% 30%, rgba(255,255,255,0.65), transparent 70%),
-    radial-gradient(ellipse 400px 100px at 50% 60%, rgba(255,255,255,0.5), transparent 70%);
+    radial-gradient(ellipse 600px 250px at 25% 40%, rgba(124,92,252,0.08), transparent 70%),
+    radial-gradient(ellipse 500px 200px at 70% 35%, rgba(75,123,245,0.06), transparent 70%),
+    radial-gradient(ellipse 400px 180px at 50% 65%, rgba(6,182,212,0.04), transparent 70%);
   pointer-events: none;
   z-index: 0;
 }

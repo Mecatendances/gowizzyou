@@ -47,7 +47,7 @@ export default function WebinairePage() {
             {/* Left: Content */}
             <div>
               <AnimateOnScroll>
-                <div className="inline-flex items-center gap-2 bg-white/80 rounded-full px-4 py-2 mb-6 border border-border-light">
+                <div className="inline-flex items-center gap-2 bg-card/80 rounded-full px-4 py-2 mb-6 border border-border-light">
                   <Play size={14} className="text-accent" />
                   <span className="text-sm font-medium text-text-secondary">Webinaire gratuit</span>
                 </div>
@@ -79,7 +79,7 @@ export default function WebinairePage() {
 
             {/* Right: Form */}
             <AnimateOnScroll direction="right">
-              <Card className="bg-white shadow-xl">
+              <Card className="bg-card shadow-xl">
                 {submitted ? (
                   <div className="text-center py-8">
                     <CheckCircle2 size={48} className="text-success mx-auto mb-4" />

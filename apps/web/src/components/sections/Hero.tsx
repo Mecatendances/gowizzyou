@@ -39,16 +39,16 @@ export function Hero() {
         {/* Terminal / Code mockup */}
         <AnimateOnScroll delay={0.5}>
           <div className="mt-16 mx-auto max-w-5xl">
-            <div className="rounded-2xl bg-white/80 backdrop-blur-sm border border-border-light shadow-2xl shadow-sky-dark/10 overflow-hidden">
+            <div className="rounded-2xl bg-card/80 backdrop-blur-sm border border-border-light shadow-2xl shadow-accent/5 overflow-hidden">
               {/* Browser bar */}
-              <div className="flex items-center gap-2 px-4 py-3 bg-cream/60 border-b border-border-light">
+              <div className="flex items-center gap-2 px-4 py-3 bg-cream-dark/60 border-b border-border-light">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-error/60" />
                   <div className="w-3 h-3 rounded-full bg-warning/60" />
                   <div className="w-3 h-3 rounded-full bg-success/60" />
                 </div>
                 <div className="flex-1 mx-4">
-                  <div className="bg-white rounded-md px-3 py-1 text-xs text-text-muted text-center border border-border-light/50">
+                  <div className="bg-card rounded-md px-3 py-1 text-xs text-text-muted text-center border border-border-light/50">
                     terminal — gowizzyou-deploy
                   </div>
                 </div>
@@ -65,7 +65,7 @@ export function Hero() {
                     <p className="text-gray-400">→ Deploying to production...</p>
                     <p className="text-green-400 font-medium mt-3">✓ Deploy successful!</p>
                     <div className="mt-3 pt-3 border-t border-gray-700 space-y-1">
-                      <p className="text-gray-500">  URL      <span className="text-sky-dark">https://client.com</span></p>
+                      <p className="text-gray-500">  URL      <span className="text-accent">https://client.com</span></p>
                       <p className="text-gray-500">  Build    <span className="text-gray-300">2.3s</span></p>
                       <p className="text-gray-500">  Score    <span className="text-green-400">98/100</span></p>
                     </div>
@@ -78,26 +78,26 @@ export function Hero() {
                     <p className="text-xs font-medium text-text-muted uppercase tracking-wider mb-3">Stack deploye</p>
                     <div className="flex flex-wrap gap-2">
                       {['Next.js', 'NestJS', 'PostgreSQL', 'Docker', 'n8n', 'Stripe'].map((tech) => (
-                        <span key={tech} className="px-2.5 py-1 bg-sky-light rounded-md text-xs font-medium text-text-secondary">
+                        <span key={tech} className="px-2.5 py-1 bg-cream-dark rounded-md text-xs font-medium text-text-secondary">
                           {tech}
                         </span>
                       ))}
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-cream/50 rounded-xl p-3 border border-border-light/50">
+                    <div className="bg-cream-dark/50 rounded-xl p-3 border border-border-light/50">
                       <p className="text-xs text-text-muted">Performance</p>
                       <p className="text-xl font-bold text-success">98<span className="text-sm font-normal text-text-muted">/100</span></p>
                     </div>
-                    <div className="bg-cream/50 rounded-xl p-3 border border-border-light/50">
+                    <div className="bg-cream-dark/50 rounded-xl p-3 border border-border-light/50">
                       <p className="text-xs text-text-muted">Securite</p>
                       <p className="text-xl font-bold text-success">A+</p>
                     </div>
-                    <div className="bg-cream/50 rounded-xl p-3 border border-border-light/50">
+                    <div className="bg-cream-dark/50 rounded-xl p-3 border border-border-light/50">
                       <p className="text-xs text-text-muted">Uptime</p>
                       <p className="text-xl font-bold text-text-primary">99.9<span className="text-sm font-normal text-text-muted">%</span></p>
                     </div>
-                    <div className="bg-cream/50 rounded-xl p-3 border border-border-light/50">
+                    <div className="bg-cream-dark/50 rounded-xl p-3 border border-border-light/50">
                       <p className="text-xs text-text-muted">Temps de charge</p>
                       <p className="text-xl font-bold text-text-primary">0.8<span className="text-sm font-normal text-text-muted">s</span></p>
                     </div>

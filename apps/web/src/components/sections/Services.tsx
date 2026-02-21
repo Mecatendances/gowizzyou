@@ -37,7 +37,7 @@ export function Services() {
             return (
               <AnimateOnScroll key={service.id} delay={i * 0.15}>
                 <Card hover className="h-full flex flex-col">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cream mb-6">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-light mb-6">
                     <Icon size={24} className="text-text-primary" />
                   </div>
                   <h3 className="text-xl font-semibold text-text-primary mb-3">

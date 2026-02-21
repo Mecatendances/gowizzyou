@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Quicksand } from 'next/font/google';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { Analytics } from '@/components/Analytics';
 import { SITE } from '@/lib/constants';
 import './globals.css';
 
@@ -19,6 +20,10 @@ export const metadata: Metadata = {
   },
   description: SITE.description,
   metadataBase: new URL(SITE.url),
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/icon.svg',
+  },
   openGraph: {
     title: `${SITE.name} — Builder de solutions business`,
     description: SITE.description,
@@ -46,6 +51,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className={quicksand.variable}>
       <body className="font-sans antialiased">
+        <Analytics />
         <Header />
         <main>{children}</main>
         <Footer />

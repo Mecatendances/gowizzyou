@@ -46,8 +46,8 @@ export default function RealisationsPage() {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all cursor-pointer ${
                   activeCategory === cat
-                    ? 'bg-text-primary text-white'
-                    : 'bg-white text-text-secondary border border-border hover:bg-cream-dark'
+                    ? 'bg-accent text-white'
+                    : 'bg-card text-text-secondary border border-border hover:bg-cream-dark'
                 }`}
               >
                 {cat}
@@ -83,7 +83,7 @@ export default function RealisationsPage() {
                     {project.stack.map((tech) => (
                       <span
                         key={tech}
-                        className="text-xs font-medium bg-cream px-2.5 py-1 rounded-md text-text-muted"
+                        className="text-xs font-medium bg-cream-dark px-2.5 py-1 rounded-md text-text-muted"
                       >
                         {tech}
                       </span>

@@ -14,4 +14,5 @@ export const INJECTION_TOKENS = {
   LEAD_REPOSITORY: Symbol('ILeadRepository'),
   CONTACT_REPOSITORY: Symbol('IContactRepository'),
   WEBINAR_REPOSITORY: Symbol('IWebinarRepository'),
+  EMAIL_SERVICE: Symbol('IEmailService'),
 } as const;

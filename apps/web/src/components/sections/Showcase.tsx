@@ -16,17 +16,17 @@ export function Showcase() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left: Project table mockup */}
           <AnimateOnScroll direction="left">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl">
+            <Card className="bg-card/90 backdrop-blur-sm shadow-xl">
               <div className="mb-6">
                 <h3 className="text-xl font-semibold mb-4">Projets livres</h3>
                 <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-2 bg-cream rounded-lg px-3 py-1.5 text-sm text-text-muted">
+                  <div className="flex items-center gap-2 bg-cream-dark rounded-lg px-3 py-1.5 text-sm text-text-muted">
                     <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                     Rechercher...
                   </div>
-                  <span className="text-xs text-text-muted bg-cream rounded-md px-2 py-1">EN COURS &middot; 5</span>
+                  <span className="text-xs text-text-muted bg-cream-dark rounded-md px-2 py-1">EN COURS &middot; 5</span>
                 </div>
               </div>
 
@@ -85,7 +85,7 @@ export function Showcase() {
                 ].map(({ icon: Icon, label }) => (
                   <div
                     key={label}
-                    className="flex items-center gap-3 bg-white/60 rounded-xl px-4 py-3 border border-border-light/50"
+                    className="flex items-center gap-3 bg-card/60 rounded-xl px-4 py-3 border border-border-light/50"
                   >
                     <Icon size={18} className="text-text-muted shrink-0" />
                     <span className="text-sm font-medium text-text-primary">{label}</span>

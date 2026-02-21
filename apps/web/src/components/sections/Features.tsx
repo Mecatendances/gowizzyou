@@ -19,16 +19,16 @@ const icon = (slug: string, color: string) =>
 
 const INTEGRATIONS = [
   { name: 'Stripe', src: icon('stripe', '#635BFF') },
-  { name: 'Notion', src: icon('notion', '#000000') },
+  { name: 'Notion', src: icon('notion', 'FFFFFF') },
   { name: 'Slack', src: icon('slack', '#4A154B') },
   { name: 'n8n', src: icon('n8n', '#EA4B71') },
-  { name: 'Dynamics 365', src: icon('dynamics365', '#002050') },
+  { name: 'Dynamics 365', src: icon('dynamics365', '4A90D9') },
   { name: 'AWS', src: icon('amazonwebservices', '#FF9900') },
   { name: 'Brevo', src: icon('brevo', '#0B996E') },
   { name: 'Make', src: icon('make', '#6D00CC') },
   { name: 'Zapier', src: icon('zapier', '#FF4A00') },
   { name: 'Docker', src: icon('docker', '#2496ED') },
-  { name: 'Vercel', src: icon('vercel', '#000000') },
+  { name: 'Vercel', src: icon('vercel', 'FFFFFF') },
   { name: 'PostgreSQL', src: icon('postgresql', '#4169E1') },
 ];
 
@@ -47,7 +47,7 @@ export function Features() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           {/* Card 1: IA-first */}
           <AnimateOnScroll delay={0}>
-            <Card className="h-full bg-white/70 backdrop-blur-sm">
+            <Card className="h-full bg-card/70 backdrop-blur-sm">
               <h3 className="text-2xl font-bold text-text-primary mb-3 leading-tight">
                 IA-first : on code avec
                 <br />
@@ -61,8 +61,8 @@ export function Features() {
                     key={tool.name}
                     className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold border-2 transition-colors ${
                       tool.accent
-                        ? 'bg-text-primary text-white border-text-primary'
-                        : 'bg-white text-text-secondary border-border hover:border-text-primary/30'
+                        ? 'bg-accent text-white border-accent'
+                        : 'bg-card text-text-secondary border-border hover:border-accent/30'
                     }`}
                   >
                     <span className="text-xs opacity-60">{tool.abbr}</span>
@@ -80,7 +80,7 @@ export function Features() {
 
           {/* Card 2: Integrations */}
           <AnimateOnScroll delay={0.15}>
-            <Card className="h-full bg-white/70 backdrop-blur-sm">
+            <Card className="h-full bg-card/70 backdrop-blur-sm">
               <h3 className="text-2xl font-bold text-text-primary mb-3 leading-tight">
                 S&apos;integre avec les outils
                 <br />
@@ -95,7 +95,7 @@ export function Features() {
                 <div className="flex gap-8 animate-scroll-left w-max">
                   {[...INTEGRATIONS, ...INTEGRATIONS].map((tool, i) => (
                     <div key={`${tool.name}-${i}`} className="flex flex-col items-center gap-2 shrink-0">
-                      <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-white border border-border-light/50 p-2.5">
+                      <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-card border border-border-light/50 p-2.5">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={tool.src} alt={tool.name} className="w-full h-full object-contain" />
                       </div>
@@ -135,8 +135,8 @@ export function Features() {
             },
           ].map(({ icon: Icon, title, description }, i) => (
             <AnimateOnScroll key={title} delay={i * 0.1}>
-              <Card className="h-full bg-white/60 backdrop-blur-sm">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-light mb-4">
+              <Card className="h-full bg-card/60 backdrop-blur-sm">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-light mb-4">
                   <Icon size={20} className="text-accent" />
                 </div>
                 <h3 className="text-lg font-semibold text-text-primary mb-2">{title}</h3>

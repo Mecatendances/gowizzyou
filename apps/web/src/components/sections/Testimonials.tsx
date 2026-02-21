@@ -39,7 +39,7 @@ export function Testimonials() {
                   &ldquo;{testimonial.quote}&rdquo;
                 </blockquote>
                 <div className="flex items-center gap-3 pt-4 border-t border-border-light">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-cream text-text-primary font-semibold text-sm">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-cream-dark text-text-primary font-semibold text-sm">
                     {testimonial.avatar}
                   </div>
                   <div>

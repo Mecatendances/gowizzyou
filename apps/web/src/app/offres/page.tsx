@@ -140,7 +140,7 @@ export default function OffresPage() {
           <div className="space-y-3">
             {FAQ.map((faq, i) => (
               <AnimateOnScroll key={i} delay={i * 0.05}>
-                <div className="bg-white rounded-xl border border-border-light overflow-hidden">
+                <div className="bg-card rounded-xl border border-border-light overflow-hidden">
                   <button
                     className="w-full flex items-center justify-between px-6 py-4 text-left cursor-pointer"
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}

@@ -28,7 +28,7 @@ export function Header() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
         <a href="/" className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-text-primary">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent">
             <span className="text-sm font-bold text-white">G</span>
           </div>
           <span className="text-lg font-semibold text-text-primary">{SITE.name}</span>

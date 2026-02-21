@@ -12,7 +12,7 @@ export function WebinarCTA() {
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
         <AnimateOnScroll>
-          <div className="inline-flex items-center gap-2 bg-white/80 rounded-full px-4 py-2 mb-6 border border-border-light">
+          <div className="inline-flex items-center gap-2 bg-card/80 rounded-full px-4 py-2 mb-6 border border-border-light">
             <Play size={14} className="text-accent" />
             <span className="text-sm font-medium text-text-secondary">Webinaire gratuit</span>
           </div>
